@@ -28,7 +28,8 @@ class Aktor extends Equatable {
         return Aktor(
           id: actor['id'].toString(),
           name: actor['name'] ?? "",
-          profilePath: 'https://image.tmdb.org/t/p/w500${actor['profile_path']}',
+          profilePath:
+              'https://image.tmdb.org/t/p/w500${actor['profile_path']}',
         );
       }));
 
@@ -37,7 +38,7 @@ class Aktor extends Equatable {
       throw Exception('Failed to load actors');
     }
   }
-  
+
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
