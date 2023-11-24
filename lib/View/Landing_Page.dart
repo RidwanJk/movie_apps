@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
-import 'package:movie_apps/widgets/swiper_pagination.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_apps/placeholder/assets.dart';
+import 'package:movie_apps/widgets/swiper_pagination.dart';
 
 class Firstpage extends StatefulWidget {
   const Firstpage({super.key});
@@ -15,14 +15,14 @@ class _FirstpageState extends State<Firstpage> {
   final int _pageCount = 3;
   int _currentIndex = 0;
   final List<String> titles = [
-    "Lorem ipsum dolor \nsit amet, consectetur adipiscing \n elit placerat. ",
-    "Aliquam eget justo \n nec arcu ultricies elementum \n id at metus. ",
-    "Nulla facilisi. \nFusce non tempus risus.\n Sed ultrices scelerisque sem,"
+    "Selamat datang!",
+    "Temukan film terkini dan klasik, nikmati penilaian dan ulasan, serta bagikan kegembiraan bersama komunitas pecinta film kami.",
+    "Rasakan pengalaman sinematik yang tak terlupakan."
   ];
   final List<Color> pageBgs = [
-    Colors.blue.shade300,
+    Color.fromARGB(255, 124, 0, 0),
     Colors.grey.shade600,
-    Colors.cyan.shade300
+    Color.fromARGB(255, 2, 0, 109)
   ];
 
   @override

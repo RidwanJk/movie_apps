@@ -1,6 +1,5 @@
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_apps/View/Register_view.dart';
 import 'package:movie_apps/placeholder/assets.dart';
 
 class LoginKu extends StatelessWidget {
@@ -62,7 +61,7 @@ class LoginKu extends StatelessWidget {
                       children: [
                         const SizedBox(height: kToolbarHeight),
                         Text(
-                          "Selamat Datang!",
+                          "Welcome!",
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
@@ -71,7 +70,7 @@ class LoginKu extends StatelessWidget {
                         ),
                         const SizedBox(height: 10.0),
                         const Text(
-                          "Ini adalah Aplikasi Premium Kita.",
+                          "Login to Enjoy Your Movie",
                           style: TextStyle(
                             color: Colors.blueGrey,
                             fontSize: 16.0,
@@ -80,60 +79,60 @@ class LoginKu extends StatelessWidget {
                         ),
                         const SizedBox(height: 20.0),
                         TextField(
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
                             suffixIcon: const Icon(
                               Icons.person,
-                              color: Colors.blueGrey,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             hintText: "Username",
-                            hintStyle: const TextStyle(color: Colors.blueGrey),
+                            hintStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  const BorderSide(color: Colors.blueGrey),
+                                  const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
                             suffixIcon: const Icon(
                               Icons.lock,
-                              color: Colors.blueGrey,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             hintText: "Password",
-                            hintStyle: const TextStyle(color: Colors.blueGrey),
+                            hintStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide:
-                                  const BorderSide(color: Colors.blueGrey),
+                                  const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                        TextButton(
-                          style: TextButton.styleFrom(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
                             foregroundColor: Colors.white,
+                            backgroundColor: Color.fromARGB(255, 221, 0, 0),
+                            minimumSize: const Size(150.0, 50.0),
                           ),
-                          child: const Text("Create new account"),
                           onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const RegisterKu(/*mengirim context*/),
-                              ),
-                            );
+                            Navigator.of(context).pushNamed('/Homepage');
                           },
+                          child: const Text('Login'),
                         ),
                       ],
                     ),
@@ -142,19 +141,6 @@ class LoginKu extends StatelessWidget {
               ],
             ),
           ),
-          if (MediaQuery.of(context).viewInsets == EdgeInsets.zero)
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(32.0),
-                elevation: 0,
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.deepOrange,
-              ),
-              child: const Text("CONTINUE"),
-              onPressed: () {
-                Navigator.of(context).pushNamed('/Homepage');
-              },
-            )
         ],
       ),
     );

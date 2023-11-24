@@ -18,7 +18,7 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
-    _fetchMovies(); 
+    _fetchMovies();
     _fetchPlayingMovie();
     _otherMovie();
   }
