@@ -114,7 +114,7 @@ class BottomNavItem extends StatelessWidget {
             end: Offset.zero,
           ).animate(animation),
           child: Container(
-            color: Colors.transparent, // Set the container color to transparent
+            color: const Color.fromARGB(0, 255, 255, 255), // Set the container color to transparent
             child: child,
           ),
         );
@@ -132,16 +132,16 @@ class BottomNavItem extends StatelessWidget {
                     title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: activeColor ?? Theme.of(context).primaryColor,
+                      color: Colors.red,
                     ),
                   ),
                   const SizedBox(height: 5.0),
                   Container(
                     width: 5.0,
                     height: 5.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: activeColor ?? Theme.of(context).primaryColor,
+                      color: Colors.red,
                     ),
                   ),
                 ],

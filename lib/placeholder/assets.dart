@@ -61,7 +61,7 @@ const List<String> avatars = [
 ];
 
 const List<String> images = [
-  'https://picsum.photos/id/88/200/300',
+  'https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64710.jpg?w=996&t=st=1700666279~exp=1700666879~hmac=fffced70e9e1349d0227eabcf33aa52104b828f8ce6509dadecb989383162029',
   'https://picsum.photos/id/13/200/300',
   'https://picsum.photos/id/51/200/300',
   'https://picsum.photos/id/71/200/300',
