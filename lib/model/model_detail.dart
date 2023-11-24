@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 
+
 class MovieDetails extends Equatable {
   final String id;
   final String title;
@@ -44,6 +45,7 @@ class MovieDetails extends Equatable {
         overview: data['overview'] ?? "",
         genres: genres,
         cast: castList,
+
         image: 'https://image.tmdb.org/t/p/w500${data['backdrop_path']}',
       );
     } else {
