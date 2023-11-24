@@ -52,7 +52,8 @@ class Movie extends Equatable {
       throw Exception('Failed to load articles');
     }
   }
-static Future<List<Movie>> NowPlayingMovies() async {
+
+  static Future<List<Movie>> NowPlayingMovies() async {
     final response = await http.get(
       Uri.parse(
           'https://api.themoviedb.org/3/movie/now_playing?api_key=9da44c390e219ffdc840f1bc8c1cd1b8'),
@@ -75,7 +76,7 @@ static Future<List<Movie>> NowPlayingMovies() async {
         );
       }));
 
-       nowPlaying = nowPlaying.take(5).toList();
+      nowPlaying = nowPlaying.take(5).toList();
 
       return nowPlaying;
     } else {
@@ -83,7 +84,6 @@ static Future<List<Movie>> NowPlayingMovies() async {
     }
   }
 
-  
   static Future<List<Movie>> OtherMovie() async {
     final response = await http.get(
       Uri.parse(
@@ -112,6 +112,7 @@ static Future<List<Movie>> NowPlayingMovies() async {
       throw Exception('Failed to load articles');
     }
   }
+
   @override
   List<Object?> get props => [
         id,

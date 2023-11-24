@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:movie_apps/View/Movie_detail_view.dart';
 import 'package:movie_apps/model/modal_movie.dart';
 import 'package:movie_apps/placeholder/assets.dart';
 import 'package:movie_apps/widgets/network_image.dart';
@@ -10,15 +11,14 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-    List<Movie> movies = [];
-    List<Movie> nowplaying = [];
-    List<Movie> othermovies = [];
-
+  List<Movie> movies = [];
+  List<Movie> nowplaying = [];
+  List<Movie> othermovies = [];
 
   @override
   void initState() {
     super.initState();
-    _fetchMovies(); 
+    _fetchMovies();
     _fetchPlayingMovie();
     _otherMovie();
   }
@@ -31,10 +31,10 @@ class _HomepageState extends State<Homepage> {
       });
     } catch (e) {
       print('Error fetching movies: $e');
-
     }
   }
-_fetchPlayingMovie() async {
+
+  _fetchPlayingMovie() async {
     try {
       List<Movie> fetchPlayingMovie = await Movie.NowPlayingMovies();
       setState(() {
@@ -42,9 +42,9 @@ _fetchPlayingMovie() async {
       });
     } catch (e) {
       print('Error fetching movies: $e');
-
     }
   }
+
   _otherMovie() async {
     try {
       List<Movie> otherList = await Movie.OtherMovie();
@@ -53,9 +53,9 @@ _fetchPlayingMovie() async {
       });
     } catch (e) {
       print('Error fetching movies: $e');
-
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,12 +68,12 @@ _fetchPlayingMovie() async {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title:const Text(
+              title: const Text(
                 'Enjoy Your Movie',
-                 style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: Color.fromARGB(255, 250, 245, 245)
-                 ),),
+                style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Color.fromARGB(255, 250, 245, 245)),
+              ),
               background: PNetworkImage(images[0], fit: BoxFit.cover),
             ),
             actions: <Widget>[
@@ -86,12 +86,12 @@ _fetchPlayingMovie() async {
           ),
           SliverToBoxAdapter(
             child: Container(
-              padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
-              color: Color.fromARGB(255, 134, 2, 2),
-            ),
-            child: Text("Top Rated Movies".toUpperCase(),
+                padding: const EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: Color.fromARGB(255, 134, 2, 2),
+                ),
+                child: Text("Top Rated Movies".toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold))),
           ),
@@ -111,7 +111,7 @@ _fetchPlayingMovie() async {
           ),
           SliverToBoxAdapter(
             child: Container(
-                  decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                   color: Color.fromARGB(255, 134, 2, 2),
                 ),
@@ -136,10 +136,10 @@ _fetchPlayingMovie() async {
           ),
           SliverToBoxAdapter(
             child: Container(
-              decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
-              color: Color.fromARGB(255, 134, 2, 2),
-            ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: Color.fromARGB(255, 134, 2, 2),
+                ),
                 padding: const EdgeInsets.all(10.0),
                 child: Text("Another Movie For You".toUpperCase(),
                     style: const TextStyle(
@@ -163,9 +163,18 @@ _fetchPlayingMovie() async {
       ),
     );
   }
+
   Widget _othermovie(BuildContext context, int index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        String movieId = othermovies[index].id;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MovieDetail(movieId: movieId),
+          ),
+        );
+      },
       child: Stack(
         children: <Widget>[
           Container(
@@ -192,8 +201,8 @@ _fetchPlayingMovie() async {
                 horizontal: 16.0,
               ),
               color: const Color.fromARGB(73, 0, 0, 0),
-              child:  Text(
-                movies[index].title,
+              child: Text(
+                othermovies[index].title,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
@@ -209,9 +218,18 @@ _fetchPlayingMovie() async {
       ),
     );
   }
+
   Widget _featuredMovie(BuildContext context, int index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        String movieId = movies[index].id;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MovieDetail(movieId: movieId),
+          ),
+        );
+      },
       child: Stack(
         children: <Widget>[
           Container(
@@ -238,7 +256,7 @@ _fetchPlayingMovie() async {
                 horizontal: 16.0,
               ),
               color: const Color.fromARGB(73, 0, 0, 0),
-              child:  Text(
+              child: Text(
                 movies[index].title,
                 style: const TextStyle(
                   color: Colors.white,
@@ -257,48 +275,47 @@ _fetchPlayingMovie() async {
   }
 
   Widget _buildSlider() {
-  return Container(
-    padding: const EdgeInsets.only(bottom: 20.0),
-    height: 200.0,
-    child: Swiper(
-      autoplay: true,
-      itemBuilder: (BuildContext context, int index) {
-        return Stack(
-          fit: StackFit.expand,
-          children: [
-            PNetworkImage(
-              nowplaying[index].backdrop_path,
-              fit: BoxFit.cover,
-            ),
-            Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 8.0,
-                horizontal: 16.0,
+    return Container(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      height: 200.0,
+      child: Swiper(
+        autoplay: true,
+        itemBuilder: (BuildContext context, int index) {
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              PNetworkImage(
+                nowplaying[index].backdrop_path,
+                fit: BoxFit.cover,
               ),
-              color: const Color.fromARGB(73, 0, 0, 0),
-              child:  Text(
-                nowplaying[index].title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 16.0,
+                  ),
+                  color: const Color.fromARGB(73, 0, 0, 0),
+                  child: Text(
+                    nowplaying[index].title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.0,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          ],
-        );
-      },
-      itemCount: nowplaying.length,
-      pagination: const SwiperPagination(),
-    ),
-  );
-}
-
+            ],
+          );
+        },
+        itemCount: nowplaying.length,
+        pagination: const SwiperPagination(),
+      ),
+    );
+  }
 
   Widget _buildListItem(int index) {
     return SizedBox(
