@@ -58,7 +58,7 @@ class _MovieDetailState extends State<MovieDetail> {
               centerTitle: true,
               title: Container(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(134, 2, 2, 2),
+                  color: const Color.fromARGB(134, 2, 2, 2),
                   borderRadius:
                       BorderRadius.circular(10.0), 
                 ),

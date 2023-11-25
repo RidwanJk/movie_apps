@@ -5,7 +5,7 @@ import 'package:movie_apps/placeholder/assets.dart';
 class Setting extends StatefulWidget {
   final String? username;
 
-  Setting({Key? key, required this.username}) : super(key: key);
+  const Setting({Key? key, required this.username}) : super(key: key);
 
   @override
   State<Setting> createState() => _SettingState();
@@ -35,10 +35,10 @@ class _SettingState extends State<Setting> {
               ),
               const SizedBox(height: 30.0),
               Padding(
-                padding: EdgeInsets.only(left: 30),
+                padding: const EdgeInsets.only(left: 30),
                 child: Text(
                   username ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 32.0,
@@ -56,9 +56,8 @@ class _SettingState extends State<Setting> {
               const SizedBox(height: 30.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
-                  fixedSize: Size(250, 75),
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white, backgroundColor: Colors.red,
+                  fixedSize: const Size(250, 75),
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 ),
                 onPressed: () async {
@@ -71,7 +70,7 @@ class _SettingState extends State<Setting> {
                     // Handle sign-out error
                   }
                 },
-                child: Text(
+                child: const Text(
                   "Logout",
                   style: TextStyle(color: Colors.black),
                 ),

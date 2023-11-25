@@ -73,8 +73,8 @@ class _HomepageState extends State<Homepage> {
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: Text(
-                'Enjoy Your Movie' + username!,
-                style: TextStyle(
+                'Enjoy Your Movie${username!}',
+                style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Color.fromARGB(255, 250, 245, 245)),
               ),
@@ -93,7 +93,7 @@ class _HomepageState extends State<Homepage> {
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Color.fromARGB(255, 134, 2, 2),
+                  color: const Color.fromARGB(255, 134, 2, 2),
                 ),
                 child: Text("Top Rated Movies".toUpperCase(),
                     style: const TextStyle(
@@ -117,7 +117,7 @@ class _HomepageState extends State<Homepage> {
             child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Color.fromARGB(255, 134, 2, 2),
+                  color: const Color.fromARGB(255, 134, 2, 2),
                 ),
                 margin: const EdgeInsets.only(top: 10.0),
                 child: Padding(
@@ -142,7 +142,7 @@ class _HomepageState extends State<Homepage> {
             child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Color.fromARGB(255, 134, 2, 2),
+                  color: const Color.fromARGB(255, 134, 2, 2),
                 ),
                 padding: const EdgeInsets.all(10.0),
                 child: Text("Another Movie For You".toUpperCase(),

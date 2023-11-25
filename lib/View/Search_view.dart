@@ -55,7 +55,7 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         title: const Padding(
           padding: EdgeInsets.only(left: 5),
           child: Text(
@@ -87,7 +87,7 @@ class _SearchViewState extends State<SearchView> {
         child: ListView(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: searchbar(context),
             ),
             Padding(
@@ -115,7 +115,7 @@ class _SearchViewState extends State<SearchView> {
               height: 60.0,
               child: const Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Row(
                   children: <Widget>[
                     Text(
@@ -123,7 +123,7 @@ class _SearchViewState extends State<SearchView> {
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                       selectionColor: Colors.white,
                     ),
-                    const Spacer(),
+                    Spacer(),
                   ],
                 ),
               ),
@@ -146,7 +146,7 @@ class _SearchViewState extends State<SearchView> {
 
   Widget searchbar(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white), // Example border
         borderRadius: BorderRadius.circular(8.0),
@@ -155,8 +155,8 @@ class _SearchViewState extends State<SearchView> {
         children: [
           Expanded(
             child: TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
                 hintText: 'Search...',
                 hintStyle: TextStyle(color: Colors.white70),
                 border: InputBorder.none,
@@ -170,7 +170,7 @@ class _SearchViewState extends State<SearchView> {
             ),
           ),
           IconButton(
-            icon: Icon(Icons.clear, color: Colors.white),
+            icon: const Icon(Icons.clear, color: Colors.white),
             onPressed: () {
               // Clear search text
               print('Clear search');

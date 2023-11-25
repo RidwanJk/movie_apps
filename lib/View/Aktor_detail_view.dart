@@ -136,9 +136,9 @@ class _AktorDetailState extends State<AktorDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width: 150, // Panjang tetap untuk label "Name"
-                        child: const Text(
+                        child: Text(
                           "Name :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -162,10 +162,10 @@ class _AktorDetailState extends State<AktorDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, // Panjang tetap untuk label "Place of Birth"
-                        child: const Text(
+                        child: Text(
                           "Place of Birth :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -189,10 +189,10 @@ class _AktorDetailState extends State<AktorDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, // Panjang tetap untuk label "Place of Birth"
-                        child: const Text(
+                        child: Text(
                           "Birthday :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -216,10 +216,10 @@ class _AktorDetailState extends State<AktorDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Biography :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),

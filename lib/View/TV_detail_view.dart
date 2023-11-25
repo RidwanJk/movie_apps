@@ -144,9 +144,9 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width: 150, 
-                        child: const Text(
+                        child: Text(
                           "Name :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -170,10 +170,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150,
-                        child: const Text(
+                        child: Text(
                           "First Air Date :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -197,10 +197,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150,
-                        child: const Text(
+                        child: Text(
                           "Status :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -224,10 +224,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Language :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -251,10 +251,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Popularity :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -278,10 +278,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Type :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -305,10 +305,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Episodes :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -332,10 +332,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Season :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -359,10 +359,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Vote Number :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
@@ -386,10 +386,10 @@ class _TVDetailState extends State<TVDetail> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      const SizedBox(
                         width:
                             150, 
-                        child: const Text(
+                        child: Text(
                           "Overview :",
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),

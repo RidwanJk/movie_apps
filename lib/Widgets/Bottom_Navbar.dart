@@ -14,6 +14,7 @@ class BotNav extends StatefulWidget {
 class _BotNavState extends State<BotNav> {
   int _currentIndex = 0;
   String? username;
+  @override
   void initState() {
     super.initState();
     username = widget.username;
@@ -87,7 +88,7 @@ class _BotNavState extends State<BotNav> {
       case 0:
         return Homepage(username: username);
       case 1:
-        return SearchView();
+        return const SearchView();
       case 2:
         return Setting(username: username);
       default:
@@ -137,7 +138,7 @@ class BottomNavItem extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.red,
                     ),

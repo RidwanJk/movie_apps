@@ -20,9 +20,9 @@ class _FirstpageState extends State<Firstpage> {
     "Rasakan pengalaman sinematik yang tak terlupakan."
   ];
   final List<Color> pageBgs = [
-    Color.fromARGB(255, 124, 0, 0),
+    const Color.fromARGB(255, 124, 0, 0),
     Colors.grey.shade600,
-    Color.fromARGB(255, 2, 0, 109)
+    const Color.fromARGB(255, 2, 0, 109)
   ];
 
   @override

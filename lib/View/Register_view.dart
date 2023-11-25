@@ -158,7 +158,7 @@ class _RegisterKuState extends State<RegisterKu> {
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               foregroundColor: Colors.white,
-                              backgroundColor: Color.fromARGB(255, 221, 0, 0),
+                              backgroundColor: const Color.fromARGB(255, 221, 0, 0),
                               minimumSize: const Size(150.0, 50.0),
                             ),
                             child: Text("Register".toUpperCase()),

@@ -12,7 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Firstpage(),
         '/login': (context) => const LoginKu(),
-        '/Homepage': (context) => viewWithNav(),
-        '/Search': (context) => SearchView(),
+        '/Homepage': (context) => const viewWithNav(),
+        '/Search': (context) => const SearchView(),
       },
     );
   }
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
 
 class viewWithNav extends StatelessWidget {
   final String? username;
-  viewWithNav({Key? key, this.username}) : super(key: key);
+  const viewWithNav({Key? key, this.username}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     if (username != null) {
@@ -46,6 +46,6 @@ class viewWithNav extends StatelessWidget {
         bottomNavigationBar: BotNav(username: username),
       );
     }
-    return Text("fail");
+    return const Text("fail");
   }
 }
