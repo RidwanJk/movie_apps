@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_apps/placeholder/assets.dart';
 
@@ -148,7 +149,16 @@ class _SettingState extends State<Setting> {
                     "Logout",
                     style: whiteBoldText,
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    try {
+                      await FirebaseAuth.instance.signOut();
+                      // Navigate to your login or authentication page
+                      Navigator.of(context).pushReplacementNamed('/login');
+                    } catch (e) {
+                      print('Error signing out: $e');
+                      // Handle sign-out error
+                    }
+                  },
                 ),
               ],
             ),
