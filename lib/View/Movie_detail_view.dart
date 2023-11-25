@@ -15,7 +15,7 @@ class MovieDetail extends StatefulWidget {
 }
 
 class _MovieDetailState extends State<MovieDetail> {
-  late MovieDetails movieDetail = MovieDetails(
+  late MovieDetails movieDetail = const MovieDetails(
     id: '',
     title: '',
     overview: '',
@@ -55,20 +55,61 @@ class _MovieDetailState extends State<MovieDetail> {
             expandedHeight: 250.0,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: Text(
-                  movieDetail.title,
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: Color.fromARGB(255, 250, 245, 245)),
+              centerTitle: true,
+              title: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(134, 2, 2, 2),
+                  borderRadius:
+                      BorderRadius.circular(10.0), 
                 ),
-                background: Image(
-                  image: NetworkImage(movieDetail.image),
-                  fit: BoxFit.fill,
-                )),
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  movieDetail.title,
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Color.fromARGB(255, 250, 245, 245),
+                  ),
+                ),
+              ),
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(movieDetail.image),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Image.network(
+                      movieDetail.image,
+                      fit: BoxFit.fill,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      (loadingProgress.expectedTotalBytes ?? 1)
+                                  : null,
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             actions: <Widget>[
               IconButton(
                 icon: const Icon(Icons.favorite_border),
+                color: const Color.fromARGB(255, 255, 255, 255),
                 tooltip: 'Favorites',
                 onPressed: () {/* ... */},
               ),
@@ -76,10 +117,65 @@ class _MovieDetailState extends State<MovieDetail> {
           ),
           SliverToBoxAdapter(
             child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: const Color.fromARGB(255, 134, 2, 2),
+                ),
+                padding: const EdgeInsets.all(10.0),
+                child: Text("Detail Movie".toUpperCase(),
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold))),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Overview:",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    movieDetail.overview,
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Genres:",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    children: movieDetail.genres
+                        .map((genre) => Chip(label: Text(genre)))
+                        .toList(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
                 padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: Color.fromARGB(255, 134, 2, 2),
+                  color: const Color.fromARGB(255, 134, 2, 2),
                 ),
                 child: Text("Cast".toUpperCase(),
                     style: const TextStyle(
@@ -99,39 +195,6 @@ class _MovieDetailState extends State<MovieDetail> {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: Color.fromARGB(255, 134, 2, 2),
-                ),
-                margin: const EdgeInsets.only(top: 10.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("Now Playing".toUpperCase(),
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold))),
-                    ],
-                  ),
-                )),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: Color.fromARGB(255, 134, 2, 2),
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: Text("Another Movie For You".toUpperCase(),
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold))),
-          ),
         ],
       ),
     );
@@ -146,16 +209,30 @@ class _MovieDetailState extends State<MovieDetail> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.grey,
-              image: DecorationImage(
-                image: NetworkImage(
-                    "https://image.tmdb.org/t/p/w500" + x[index].profilePath),
-                fit: BoxFit.cover,
-              ),
             ),
             alignment: Alignment.center,
             margin: const EdgeInsets.symmetric(horizontal: 10),
             width: 150,
             height: 200,
+            child: Image.network(
+              "https://image.tmdb.org/t/p/w500${x[index].profilePath}",
+              fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              (loadingProgress.expectedTotalBytes ?? 1)
+                          : null,
+                    ),
+                  );
+                }
+              },
+            ),
           ),
           Positioned(
             bottom: 0,
