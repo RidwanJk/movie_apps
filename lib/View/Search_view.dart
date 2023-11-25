@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_apps/View/Aktor_detail_view.dart';
+import 'package:movie_apps/View/TV_detail_view.dart';
 import 'package:movie_apps/model/modal_tv.dart';
 import 'package:movie_apps/model/model_aktor.dart';
-import 'package:movie_apps/placeholder/assets.dart';
 
 TextStyle priceTextStyle = const TextStyle(
     color: Color.fromARGB(255, 255, 255, 255),
@@ -182,7 +183,15 @@ class _SearchViewState extends State<SearchView> {
 
   Widget _topAktor(BuildContext context, int index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        String aktorId = aktor[index].id;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AktorDetail(aktorId: aktorId),
+          ),
+        );
+      },
       child: Stack(
         children: <Widget>[
           Container(
@@ -227,33 +236,6 @@ class _SearchViewState extends State<SearchView> {
     );
   }
 
-  Widget _categoryList(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Column(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.black12,
-                image: DecorationImage(
-                    image: NetworkImage(images[2]), fit: BoxFit.cover)),
-            alignment: Alignment.center,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            width: 100,
-            height: 100,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "Tables",
-            style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-          )
-        ],
-      ),
-    );
-  }
 }
 
 class ProductListItem extends StatelessWidget {
@@ -275,7 +257,15 @@ class ProductListItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        onPressed: onPressed as void Function()?,
+        onPressed: (){
+          String tvID = tvShow.id;
+          Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TVDetail(tvID: tvID),
+          ),
+        );
+        },
         child: Row(
           children: <Widget>[
             Ink(
