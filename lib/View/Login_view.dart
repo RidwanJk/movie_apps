@@ -1,10 +1,20 @@
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_apps/Auth/auth_service.dart';
+import 'package:movie_apps/View/Register_view.dart';
+import 'package:movie_apps/main.dart';
 import 'package:movie_apps/placeholder/assets.dart';
 
-class LoginKu extends StatelessWidget {
+class LoginKu extends StatefulWidget {
   const LoginKu({super.key});
 
+  @override
+  State<LoginKu> createState() => _LoginKuState();
+}
+
+class _LoginKuState extends State<LoginKu> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +89,7 @@ class LoginKu extends StatelessWidget {
                         ),
                         const SizedBox(height: 20.0),
                         TextField(
+                          controller: _emailController,
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
@@ -87,20 +98,22 @@ class LoginKu extends StatelessWidget {
                               Icons.person,
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
-                            hintText: "Username",
-                            hintStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                            hintText: "Email",
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          controller: _passwordController,
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
@@ -110,13 +123,14 @@ class LoginKu extends StatelessWidget {
                               color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             hintText: "Password",
-                            hintStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
@@ -129,10 +143,47 @@ class LoginKu extends StatelessWidget {
                             backgroundColor: Color.fromARGB(255, 221, 0, 0),
                             minimumSize: const Size(150.0, 50.0),
                           ),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed('/Homepage');
+                          onPressed: () async {
+                            String? username = await AuthService().login(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                            if (username != null) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      viewWithNav(username: username),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      Text(username ?? 'An error occurred'),
+                                ),
+                              );
+                            }
                           },
                           child: const Text('Login'),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            foregroundColor: Colors.white,
+                            backgroundColor: Color.fromARGB(255, 221, 0, 0),
+                            minimumSize: const Size(150.0, 50.0),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterKu(),
+                              ),
+                            );
+                          },
+                          child: const Text('Register'),
                         ),
                       ],
                     ),

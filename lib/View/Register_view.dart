@@ -1,11 +1,20 @@
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_apps/Auth/auth_service.dart';
 import 'package:movie_apps/View/Login_view.dart';
 import 'package:movie_apps/placeholder/assets.dart';
 
-class RegisterKu extends StatelessWidget {
+class RegisterKu extends StatefulWidget {
   const RegisterKu({super.key});
 
+  @override
+  State<RegisterKu> createState() => _RegisterKuState();
+}
+
+class _RegisterKuState extends State<RegisterKu> {
+  final TextEditingController _userController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +80,7 @@ class RegisterKu extends StatelessWidget {
                         ),
                         const SizedBox(height: 20.0),
                         TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
@@ -92,6 +102,7 @@ class RegisterKu extends StatelessWidget {
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          controller: _userController,
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
@@ -113,6 +124,7 @@ class RegisterKu extends StatelessWidget {
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          controller: _passwordController,
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
@@ -162,7 +174,22 @@ class RegisterKu extends StatelessWidget {
                 backgroundColor: Colors.deepOrange,
               ),
               child: Text("Register".toUpperCase()),
-              onPressed: () {},
+              onPressed: () async {
+                final message = await AuthService().registration(
+                  username: _userController.text,
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                );
+                if (message!.contains('Success')) {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => const LoginKu()));
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(message),
+                  ),
+                );
+              },
             )
         ],
       ),

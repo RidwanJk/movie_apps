@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:movie_apps/placeholder/assets.dart';
 
-class Setting extends StatelessWidget {
-  static const String path = "lib/src/pages/settings/settings2.dart";
+class Setting extends StatefulWidget {
+  final String? username;
+  Setting({super.key, required this.username});
+
+  @override
+  State<Setting> createState() => _SettingState();
+}
+
+class _SettingState extends State<Setting> {
+  String? username;
+  void initState() {
+    super.initState();
+    username = widget.username;
+  }
+
   final TextStyle whiteText = const TextStyle(
     color: Colors.white,
   );
+
   final TextStyle greyTExt = TextStyle(
     color: Colors.grey.shade400,
   );
+
   final TextStyle whiteBoldText = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.bold,
   );
-  Setting({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +70,8 @@ class Setting extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          const Text(
-                            "Jane Doe",
+                          Text(
+                            username!,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20.0,

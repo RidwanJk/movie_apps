@@ -6,6 +6,9 @@ import 'package:movie_apps/placeholder/assets.dart';
 import 'package:movie_apps/widgets/network_image.dart';
 
 class Homepage extends StatefulWidget {
+  final String? username;
+
+  const Homepage({Key? key, required this.username}) : super(key: key);
   @override
   _HomepageState createState() => _HomepageState();
 }
@@ -14,13 +17,14 @@ class _HomepageState extends State<Homepage> {
   List<Movie> movies = [];
   List<Movie> nowplaying = [];
   List<Movie> othermovies = [];
-
+  String? username;
   @override
   void initState() {
     super.initState();
     _fetchMovies();
     _fetchPlayingMovie();
     _otherMovie();
+    username = widget.username;
   }
 
   _fetchMovies() async {
@@ -68,8 +72,8 @@ class _HomepageState extends State<Homepage> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: const Text(
-                'Enjoy Your Movie',
+              title: Text(
+                'Enjoy Your Movie' + username!,
                 style: TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Color.fromARGB(255, 250, 245, 245)),

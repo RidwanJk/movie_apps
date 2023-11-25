@@ -4,7 +4,8 @@ import 'package:movie_apps/View/Search_view.dart';
 import 'package:movie_apps/View/Setting.dart';
 
 class BotNav extends StatefulWidget {
-  const BotNav({Key? key}) : super(key: key);
+  final String? username;
+  const BotNav({Key? key, this.username}) : super(key: key);
 
   @override
   _BotNavState createState() => _BotNavState();
@@ -12,6 +13,11 @@ class BotNav extends StatefulWidget {
 
 class _BotNavState extends State<BotNav> {
   int _currentIndex = 0;
+  String? username;
+  void initState() {
+    super.initState();
+    username = widget.username;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +85,13 @@ class _BotNavState extends State<BotNav> {
   Widget _buildPage(int index) {
     switch (index) {
       case 0:
-        return Homepage();
+        return Homepage(username: username);
       case 1:
         return SearchView();
       case 2:
-        return Setting();
+        return Setting(username: username);
       default:
-        return Homepage(); // Default page to display
+        return Homepage(username: username); // Default page to display
     }
   }
 }
@@ -114,7 +120,8 @@ class BottomNavItem extends StatelessWidget {
             end: Offset.zero,
           ).animate(animation),
           child: Container(
-            color: const Color.fromARGB(0, 255, 255, 255), // Set the container color to transparent
+            color: const Color.fromARGB(
+                0, 255, 255, 255), // Set the container color to transparent
             child: child,
           ),
         );

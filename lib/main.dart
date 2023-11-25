@@ -1,12 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_apps/View/Homepage_view.dart';
 import 'package:movie_apps/View/Landing_Page.dart';
 import 'package:movie_apps/View/Login_view.dart';
 import 'package:movie_apps/View/Search_view.dart';
 import 'package:movie_apps/Widgets/Bottom_Navbar.dart';
+import 'package:movie_apps/firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,11 +36,16 @@ class MyApp extends StatelessWidget {
 }
 
 class viewWithNav extends StatelessWidget {
+  final String? username;
+  viewWithNav({Key? key, this.username}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Homepage(), // Your custom view widget
-      bottomNavigationBar: BotNav(),
-    );
+    if (username != null) {
+      return Scaffold(
+        body: Homepage(username: username), // Pass username to Homepage
+        bottomNavigationBar: BotNav(username: username),
+      );
+    }
+    return Text("fail");
   }
 }
