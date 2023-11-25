@@ -4,164 +4,79 @@ import 'package:movie_apps/placeholder/assets.dart';
 
 class Setting extends StatefulWidget {
   final String? username;
-  Setting({super.key, required this.username});
+
+  Setting({Key? key, required this.username}) : super(key: key);
 
   @override
   State<Setting> createState() => _SettingState();
 }
 
 class _SettingState extends State<Setting> {
-  String? username;
+  late String? username;
+
+  @override
   void initState() {
     super.initState();
     username = widget.username;
   }
 
-  final TextStyle whiteText = const TextStyle(
-    color: Colors.white,
-  );
-
-  final TextStyle greyTExt = TextStyle(
-    color: Colors.grey.shade400,
-  );
-
-  final TextStyle whiteBoldText = TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.bold,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Theme(
-        data: Theme.of(context).copyWith(
-          brightness: Brightness.dark,
-          primaryColor: Colors.purple,
-        ),
-        child: DefaultTextStyle(
-          style: const TextStyle(
-            color: Colors.white,
-          ),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(height: 30.0),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(avatars[1]),
-                          fit: BoxFit.cover,
-                        ),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10.0),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            username!,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                            ),
-                          ),
-                          Text(
-                            "Nepal",
-                            style: TextStyle(
-                              color: Colors.grey.shade400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CircleAvatar(
+                radius: 100,
+                backgroundImage: NetworkImage(avatars[1]),
+              ),
+              const SizedBox(height: 30.0),
+              Padding(
+                padding: EdgeInsets.only(left: 30),
+                child: Text(
+                  username ?? '',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32.0,
+                  ),
                 ),
-                const SizedBox(height: 20.0),
-                ListTile(
-                  title: Text(
-                    "Languages",
-                    style: whiteBoldText,
-                  ),
-                  subtitle: Text(
-                    "English US",
-                    style: greyTExt,
-                  ),
-                  trailing: Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.grey.shade400,
-                  ),
-                  onTap: () {},
+              ),
+              const SizedBox(height: 12.0),
+              Text(
+                "Nepal",
+                style: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontSize: 18.0,
                 ),
-                ListTile(
-                  title: Text(
-                    "Profile Settings",
-                    style: whiteBoldText,
-                  ),
-                  subtitle: Text(
-                    "Jane Doe",
-                    style: greyTExt,
-                  ),
-                  trailing: Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.grey.shade400,
-                  ),
-                  onTap: () {},
+              ),
+              const SizedBox(height: 30.0),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
+                  fixedSize: Size(250, 75),
+                  onPrimary: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 ),
-                SwitchListTile(
-                  title: Text(
-                    "Email Notifications",
-                    style: whiteBoldText,
-                  ),
-                  subtitle: Text(
-                    "On",
-                    style: greyTExt,
-                  ),
-                  value: true,
-                  onChanged: (val) {},
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                    // Navigate to your login or authentication page
+                    Navigator.of(context).pushReplacementNamed('/login');
+                  } catch (e) {
+                    print('Error signing out: $e');
+                    // Handle sign-out error
+                  }
+                },
+                child: Text(
+                  "Logout",
+                  style: TextStyle(color: Colors.black),
                 ),
-                SwitchListTile(
-                  title: Text(
-                    "Push Notifications",
-                    style: whiteBoldText,
-                  ),
-                  subtitle: Text(
-                    "Off",
-                    style: greyTExt,
-                  ),
-                  value: false,
-                  onChanged: (val) {},
-                ),
-                ListTile(
-                  title: Text(
-                    "Logout",
-                    style: whiteBoldText,
-                  ),
-                  onTap: () async {
-                    try {
-                      await FirebaseAuth.instance.signOut();
-                      // Navigate to your login or authentication page
-                      Navigator.of(context).pushReplacementNamed('/login');
-                    } catch (e) {
-                      print('Error signing out: $e');
-                      // Handle sign-out error
-                    }
-                  },
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -71,7 +71,7 @@ class _RegisterKuState extends State<RegisterKu> {
                       children: [
                         const SizedBox(height: kToolbarHeight),
                         Text(
-                          "Register Akun Gratis!",
+                          "Register Akun!",
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
@@ -81,21 +81,23 @@ class _RegisterKuState extends State<RegisterKu> {
                         const SizedBox(height: 20.0),
                         TextField(
                           controller: _emailController,
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
                             suffixIcon: const Icon(
                               Icons.person,
-                              color: Colors.blueGrey,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             hintText: "Email",
-                            hintStyle: const TextStyle(color: Colors.blueGrey),
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Colors.blueGrey),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
@@ -103,48 +105,81 @@ class _RegisterKuState extends State<RegisterKu> {
                         const SizedBox(height: 10.0),
                         TextField(
                           controller: _userController,
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
                             suffixIcon: const Icon(
                               Icons.person,
-                              color: Colors.blueGrey,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             hintText: "Username",
-                            hintStyle: const TextStyle(color: Colors.blueGrey),
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Colors.blueGrey),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          obscureText: true,
                           controller: _passwordController,
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 32.0),
                             suffixIcon: const Icon(
                               Icons.lock,
-                              color: Colors.blueGrey,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                             hintText: "Password",
-                            hintStyle: const TextStyle(color: Colors.blueGrey),
+                            hintStyle: const TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Colors.blueGrey),
+                              borderSide: const BorderSide(
+                                  color: Color.fromARGB(255, 255, 255, 255)),
                               borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
                         ),
                         const SizedBox(height: 20.0),
+                        if (MediaQuery.of(context).viewInsets ==
+                            EdgeInsets.zero)
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              foregroundColor: Colors.white,
+                              backgroundColor: Color.fromARGB(255, 221, 0, 0),
+                              minimumSize: const Size(150.0, 50.0),
+                            ),
+                            child: Text("Register".toUpperCase()),
+                            onPressed: () async {
+                              final message = await AuthService().registration(
+                                username: _userController.text,
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              );
+                              if (message!.contains('Success')) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => const LoginKu()));
+                              }
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(message),
+                                ),
+                              );
+                            },
+                          ),
                         TextButton(
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
@@ -165,32 +200,6 @@ class _RegisterKuState extends State<RegisterKu> {
               ],
             ),
           ),
-          if (MediaQuery.of(context).viewInsets == EdgeInsets.zero)
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(32.0),
-                elevation: 0,
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.deepOrange,
-              ),
-              child: Text("Register".toUpperCase()),
-              onPressed: () async {
-                final message = await AuthService().registration(
-                  username: _userController.text,
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                );
-                if (message!.contains('Success')) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const LoginKu()));
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                  ),
-                );
-              },
-            )
         ],
       ),
     );

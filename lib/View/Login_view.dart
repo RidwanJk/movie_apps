@@ -113,6 +113,7 @@ class _LoginKuState extends State<LoginKu> {
                         ),
                         const SizedBox(height: 10.0),
                         TextField(
+                          obscureText: true,
                           controller: _passwordController,
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
@@ -169,12 +170,9 @@ class _LoginKuState extends State<LoginKu> {
                         SizedBox(
                           height: 10,
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
+                        TextButton(
+                          style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
-                            backgroundColor: Color.fromARGB(255, 221, 0, 0),
-                            minimumSize: const Size(150.0, 50.0),
                           ),
                           onPressed: () {
                             Navigator.of(context).push(
