@@ -67,13 +67,14 @@ class _HomepageState extends State<Homepage> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: const Color.fromARGB(255, 0, 0, 0),
             expandedHeight: 150.0,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: Text(
-                'Enjoy Your Movie' + username!,
+                'Enjoy Your Movie ' + username!,
                 style: TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Color.fromARGB(255, 250, 245, 245)),
@@ -320,5 +321,4 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
-
 }

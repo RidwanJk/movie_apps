@@ -149,7 +149,13 @@ class _LoginKuState extends State<LoginKu> {
                               email: _emailController.text,
                               password: _passwordController.text,
                             );
-                            if (username != null) {
+                            if (username != "Unable to establish connection on channel." &&
+                                username !=
+                                    "The supplied auth credential is incorrect, malformed or has expired." &&
+                                username !=
+                                    "We have blocked all request from this device due to unusual activity. Try again later." &&
+                                username !=
+                                    "The email address is badly formatted.") {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) =>

@@ -47,7 +47,7 @@ class _SettingState extends State<Setting> {
               ),
               const SizedBox(height: 12.0),
               Text(
-                "Nepal",
+                "UIN Jawa",
                 style: TextStyle(
                   color: Colors.grey.shade400,
                   fontSize: 18.0,

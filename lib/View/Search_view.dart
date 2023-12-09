@@ -55,6 +55,7 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
         title: const Padding(
           padding: EdgeInsets.only(left: 5),
@@ -62,16 +63,6 @@ class _SearchViewState extends State<SearchView> {
               style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
               'Directories'),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            color: const Color.fromARGB(255, 255, 255, 255),
-            onPressed: () {
-              // Perform search action
-              print('Search button tapped');
-            },
-          ),
-        ],
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -235,7 +226,6 @@ class _SearchViewState extends State<SearchView> {
       ),
     );
   }
-
 }
 
 class ProductListItem extends StatelessWidget {
@@ -257,14 +247,14 @@ class ProductListItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        onPressed: (){
+        onPressed: () {
           String tvID = tvShow.id;
           Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => TVDetail(tvID: tvID),
-          ),
-        );
+            context,
+            MaterialPageRoute(
+              builder: (context) => TVDetail(tvID: tvID),
+            ),
+          );
         },
         child: Row(
           children: <Widget>[
@@ -291,9 +281,13 @@ class ProductListItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                             Text("Name: ${tvShow.name}", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
-                             Text("Popularity: ${tvShow.popularity}"),
-                             Text("First Air Date: ${tvShow.firstAirDate}"),
+                            Text(
+                              "Name: ${tvShow.name}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            ),
+                            Text("Popularity: ${tvShow.popularity}"),
+                            Text("First Air Date: ${tvShow.firstAirDate}"),
                             const SizedBox(
                               height: 5,
                             ),
